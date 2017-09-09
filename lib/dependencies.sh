@@ -77,9 +77,13 @@ yarn_node_modules() {
   cd "$build_dir"
   if yarn_supports_frozen_lockfile; then
     yarn install --frozen-lockfile --ignore-engines 2>&1
+    yarn bootstrap
   else
     yarn install --pure-lockfile --ignore-engines 2>&1
+    yarn bootstrap
   fi
+
+  yarn build
 }
 
 npm_node_modules() {
